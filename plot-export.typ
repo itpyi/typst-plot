@@ -11,7 +11,7 @@
   }
   if debug.get() {
     [Debug mode. Switch to the output mode in the show rules. \
-    Figure No.~#num with caption: #caption]
+    Figure No.~#num with caption: #raw(caption)]
   }
   if (debug.get() or caption == output.get() or num == output-num.get()){
     body
@@ -47,12 +47,11 @@
   set page(width: auto, height: auto, margin: margin)
   
   if output-num >= 0 and not (output == none) {
-    [Please specify the rendered figure by caption #emph[or] number, but not by both!]
+    [Error: Please specify the rendered figure by caption #emph[or] number, but not by both!]
   } else {
     body
-  }
-
-  context{
-    if not debug and output-num >= count.get().at(0) [Error: output-num larger than total figure number!]
+    context{
+      if not debug and output-num >= count.get().at(0) [Error: output-num larger than total figure number!]
+    }
   }
 }

@@ -15,5 +15,5 @@ __MACOSX
 !.vscode/extensions.json
 .history/
 
-# Others
+# Other files
 *.pdf

@@ -11,7 +11,7 @@
   }
   if debug.get() {
     [Debug mode. Switch to the output mode in the show rules. \
-    Figure No.~#num with caption: #raw(caption)]
+    Figure No.~#num with caption: #raw(caption)\ ]
   }
   if (debug.get() or caption == output.get() or num == output-num.get()){
     body

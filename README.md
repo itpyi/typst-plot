@@ -1,8 +1,8 @@
 # Fig Plucker
 
-A lightweight Typst utility for maintaining a single figure library while seamlessly exporting individual, auto-cropped vector graphics for LaTeX or PowerPoint.
+A lightweight Typst utility for maintaining a single figure library while seamlessly exporting individual, auto-cropped vector graphics for using elsewhere.
 
-[Typst](https://typst.app/), combined with [CeTZ](https://cetz-package.github.io/), is a powerful alternative to TikZ or Matplotlib for academic illustrations. When working on papers or slides, managing dozens of separate `.typ` files becomes a headache. Fig Plucker keeps everything in one place and exports exactly the figure you need.
+[Typst](https://typst.app/), combined with [CeTZ](https://cetz-package.github.io/), is a powerful alternative to TikZ or Matplotlib for academic illustrations. When working on papers or slides with other tools like LaTeX or PowerPoint, managing dozens of separate `.typ` files becomes a headache. Fig Plucker keeps everything in one place and exports exactly the figure you need.
 
 ## Key Features
 
@@ -20,7 +20,7 @@ Our workflow provides two distinct modes to bridge the gap between "designing" a
 A minimal CeTZ example (3 figures) is in [examples/mini.typ](examples/mini.typ). It draws a circle, square, and triangle, and can be exported in two modes:
 
 - **Debug mode:** renders a 3-page PDF, exported to SVG pages as [examples/mini1.svg](examples/mini1.svg), [examples/mini2.svg](examples/mini2.svg), [examples/mini3.svg](examples/mini3.svg).
-- **Output mode:** set `output-label: "square"` to export a single figure as [examples/mini-square.svg](examples/mini-square.svg).
+- **Output mode:** set `output-label: "square"` and `debug: false` to export a single figure as [examples/mini-square.svg](examples/mini-square.svg).
 
 ```typst
 #import "fig-plucker.typ": fig-plucker, fig
@@ -57,7 +57,9 @@ A minimal CeTZ example (3 figures) is in [examples/mini.typ](examples/mini.typ).
 **Debug mode outputs (3 pages):**
 
 ![mini page 1](examples/mini1.svg)
+
 ![mini page 2](examples/mini2.svg)
+
 ![mini page 3](examples/mini3.svg)
 
 **Output mode (single figure):**

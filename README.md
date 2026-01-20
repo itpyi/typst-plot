@@ -23,7 +23,7 @@ A minimal CeTZ example (3 figures) is in [mini.typ](https://github.com/itpyi/typ
 - **Output mode:** set `output-label: "square"` and `debug: false` to export a single figure.
 
 ```typst
-#import "fig-plucker.typ": fig-plucker, fig
+#import "@preview/fig-plucker:0.1.0": fig-plucker, fig
 #import "@preview/cetz:0.4.2": canvas, draw
 
 #show: fig-plucker.with(
@@ -56,34 +56,23 @@ A minimal CeTZ example (3 figures) is in [mini.typ](https://github.com/itpyi/typ
 
 **Debug mode outputs (3 pages):**
 
-![mini page 1](readme-assets/mini1.svg)
+![mini page 1](https://raw.githubusercontent.com/itpyi/typst-plot/main/readme-assets/mini1.svg)
 
-![mini page 2](readme-assets/mini2.svg)
+![mini page 2](https://raw.githubusercontent.com/itpyi/typst-plot/main/readme-assets/mini2.svg)
 
-![mini page 3](readme-assets/mini3.svg)
+![mini page 3](https://raw.githubusercontent.com/itpyi/typst-plot/main/readme-assets/mini3.svg)
 
 **Output mode (single figure):**
 
-![mini square](readme-assets/mini-square.svg)
+![mini square](https://raw.githubusercontent.com/itpyi/typst-plot/main/readme-assets/mini-square.svg)
 
-## Install
-
-```typst
-#import "@preview/fig-plucker:0.1.0": *
-```
-
-Or use a local copy:
-
-```typst
-#import "fig-plucker.typ": *
-```
 
 ## How to Use
 
 Use the `#show` rule to toggle between modes and select a figure by label or index:
 
 ```typst
-#import "fig-plucker.typ": *
+#import "@preview/fig-plucker:0.1.0": *
 
 #show: fig-plucker.with(
   debug: true,            // Set to false for final export

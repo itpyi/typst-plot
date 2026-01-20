@@ -5,4 +5,5 @@ entrypoint = "fig-plucker.typ"
 authors = ["itpyi"]
 license = "MIT"
 description = "A utility for managing and exporting individual figures from a single file."
-repository = "https://github.com/itpyi/fig-plucker"
+repository = "https://github.com/itpyi/typst-plot"
+exclude = ["examples/**", "readme-assets/**", "**/*.svg", "**/*.pdf"]

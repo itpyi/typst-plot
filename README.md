@@ -1,47 +1,127 @@
-# Typst Plot Export Utility
+# Fig Plucker
 
-This snippet provides a streamlined workflow for academic researchers who use [Typst](https://typst.app/) and [CeTZ](https://cetz-package.github.io/) to create illustrations for documents written in LaTeX or PowerPoint.
+A lightweight Typst utility for maintaining a single figure library while seamlessly exporting individual, auto-cropped vector graphics for LaTeX or PowerPoint.
 
-## The Problem
+[Typst](https://typst.app/), combined with [CeTZ](https://cetz-package.github.io/), is a powerful alternative to TikZ or Matplotlib for academic illustrations. When working on papers or slides, managing dozens of separate `.typ` files becomes a headache. Fig Plucker keeps everything in one place and exports exactly the figure you need.
 
-When writing a paper, you often need multiple vector graphics (PDF/SVG). Managing a separate `.typ` file for every single figure is disorganized. However, keeping them in one file makes it difficult to export just "Figure 5" with a perfectly cropped bounding box.
+## Key Features
 
-## The Solution
+Our workflow provides two distinct modes to bridge the gap between "designing" and "exporting":
 
-This utility allows you to maintain a **single figure library**.
+| Feature        | Debug Mode (`debug: true`)                       | Output Mode (`debug: false`)                          |
+| -------------- | ------------------------------------------------ | ----------------------------------------------------- |
+| **Visibility** | Renders all figures in the file (multiple pages) | Renders **only one** specified figure (a single page) |
+| **Canvas**     | Auto-cropped to figure size with breaks          | Auto-cropped to figure size (perfect for PDF/SVG)     |
+| **Metadata**   | Displays Index & Label above each plot           | Clean output (no text labels)                         |
+| **Use Case**   | Organizing and identifying figures               | Final export for LaTeX/PPT                            |
 
-* **Debug Mode:** Browse all figures with their index numbers and captions on auto-cropped pages.
-* **Output Mode:** Isolate a single figure by its name or index for final export.
+## Illustrating example
 
-## Quick Start
+A minimal CeTZ example (3 figures) is in [examples/mini.typ](examples/mini.typ). It draws a circle, square, and triangle, and can be exported in two modes:
 
-1. Copy `plot-export.typ` into your project.
-2. Structure your main file as follows:
+- **Debug mode:** renders a 3-page PDF, exported to SVG pages as [examples/mini1.svg](examples/mini1.svg), [examples/mini2.svg](examples/mini2.svg), [examples/mini3.svg](examples/mini3.svg).
+- **Output mode:** set `output-label: "square"` to export a single figure as [examples/mini-square.svg](examples/mini-square.svg).
 
 ```typst
-#import "plot-export.typ": *
+#import "fig-plucker.typ": fig-plucker, fig
+#import "@preview/cetz:0.4.2": canvas, draw
 
-#show: plot-export.with(
-  debug: true,       // Toggle to false when ready to export
-  output: "my-plot"  // Specify target by caption (or use output-num: 0)
+#show: fig-plucker.with(
+  debug: true,
+  output-label: "square",
+  // output-num: 1,
 )
 
-#fig("my-plot")[
-  // Your CeTZ or Typst drawing code
+#fig("circle")[
+  #canvas({
+    import draw: *
+    circle((0, 0), radius: 0.8)
+  })
 ]
 
-#fig("another-plot")[
+#fig("square")[
+  #canvas({
+    import draw: *
+    rect((-0.8, 0.8), (0.8, -0.8))
+  })
+]
+
+#fig("triangle")[
+  #canvas({
+    import draw: *
+    polygon((0, 0.9), (-0.8, -0.7), (0.8, -0.7))
+  })
+]
+```
+
+**Debug mode outputs (3 pages):**
+
+![mini page 1](examples/mini1.svg)
+![mini page 2](examples/mini2.svg)
+![mini page 3](examples/mini3.svg)
+
+**Output mode (single figure):**
+
+![mini square](examples/mini-square.svg)
+
+## Install
+
+```typst
+#import "@preview/fig-plucker:0.1.0": *
+```
+
+Or use a local copy:
+
+```typst
+#import "fig-plucker.typ": *
+```
+
+## How to Use
+
+Use the `#show` rule to toggle between modes and select a figure by label or index:
+
+```typst
+#import "fig-plucker.typ": *
+
+#show: fig-plucker.with(
+  debug: true,            // Set to false for final export
+  output-label: "my-plot", // Target by label...
+  // output-num: 1        // ...or target by index (0, 1, 2...)
+)
+
+#fig("label for the first figure")[
+  // Your CeTZ code or diagram here
+]
+
+#fig("label for the second figure")[
   // Another figure
 ]
 
 ```
 
-## Features
+## The Workflow
 
-* **WYSIWYG Debugging:** Even in debug mode, the canvas is auto-cropped to the figure size, so you see exactly what the export will look like.
-* **"Identify & Isolate" Workflow:** Keep `debug: true` to find the index or caption you need, then switch to `false` to generate the clean file.
-* **Visual Error Reporting:** Errors (like calling a non-existent index) are rendered directly in the output file. This ensures that if a batch export script fails, you see the reason immediately on the "canvas."
+1. **Design in Debug Mode:** Keep `debug: true`. You will see all figures listed with their index numbers and labels. Example debug info:
+
+  > Debug mode. Switch to output mode in show rules.  
+  > Figure No. 0 with label: `label for the first figure`
+
+2. **Export for Publication:** Specify `output-label` or `output-num` and set `debug: false`. Typst will render a single page perfectly cropped to your figure's boundaries, ready for PDF/SVG export. The recommended workflow is to keep `debug: true` while you find the figure you need, then flip `debug` to `false` for a clean export.
+
+## Error Handling
+
+To prevent ghost exports or accidental overwrites, Fig Plucker includes built-in guards:
+
+* **Conflict Prevention:** If you set both `output-label` and `output-num`, the output file warns you:
+
+  > Please specify the rendered figure by label *or* number, but not by both!
+
+* **Index Bounds:** If you request an index that doesn't exist, you will receive:
+
+  > Error: `output-num` larger than total figure number!
+
+These messages are rendered directly in the output file, which is faster to read than compiler logs during figure export.
 
 ## More Information
 
-For a detailed breakdown of the logic and usage tips, check out the full [blog post](https://itpyi.github.io/blog/posts/typst-plot-snippet/)
+For a detailed breakdown of the logic and usage tips, check out the full [blog post](https://itpyi.github.io/blog/posts/typst-plot-snippet/).

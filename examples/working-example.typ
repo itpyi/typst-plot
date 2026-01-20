@@ -1,5 +1,5 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
-#import "../plot-export.typ": *
+#import "../fig-plucker.typ": *
 #set text(font: "New Computer Modern")
 #show math.equation: set text(font: "New Computer Modern Math")
 #let colors = (maroon, olive, eastern)
@@ -7,9 +7,9 @@
 // #let output = 1
 // #let debug = true
 
-#show: plot-export.with(
-  debug: true, // select a figure to output by caption or number, then set debug to false
-  output: "qrm-sc",
+#show: fig-plucker.with(
+  debug: true, // select a figure to output by label or number, then set debug to false
+  output-label: "qrm-sc",
   // output-num: 3
 )
 

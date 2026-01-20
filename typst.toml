@@ -1,8 +1,8 @@
 [package]
-name = "soloist"
+name = "fig-plucker"
 version = "0.1.0"
-entrypoint = "soloist.typ"
+entrypoint = "fig-plucker.typ"
 authors = ["itpyi"]
 license = "MIT"
 description = "A utility for managing and exporting individual figures from a single file."
-repository = "https://github.com/itpyi/typst-plot"
+repository = "https://github.com/itpyi/fig-plucker"

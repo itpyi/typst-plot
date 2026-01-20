@@ -17,10 +17,10 @@ Our workflow provides two distinct modes to bridge the gap between "designing" a
 
 ## Illustrating example
 
-A minimal CeTZ example (3 figures) is in [examples/mini.typ](examples/mini.typ). It draws a circle, square, and triangle, and can be exported in two modes:
+A minimal CeTZ example (3 figures) is in [mini.typ](https://github.com/itpyi/typst-plot/blob/main/examples/mini.typ). It draws a circle, square, and triangle.
 
-- **Debug mode:** renders a 3-page PDF, exported to SVG pages as [readme-assets/mini1.svg](readme-assets/mini1.svg), [readme-assets/mini2.svg](readme-assets/mini2.svg), [readme-assets/mini3.svg](readme-assets/mini3.svg).
-- **Output mode:** set `output-label: "square"` and `debug: false` to export a single figure as [readme-assets/mini-square.svg](readme-assets/mini-square.svg).
+- **Debug mode:** renders a 3-page PDF.
+- **Output mode:** set `output-label: "square"` and `debug: false` to export a single figure.
 
 ```typst
 #import "fig-plucker.typ": fig-plucker, fig
@@ -126,4 +126,4 @@ These messages are rendered directly in the output file, which is faster to read
 
 ## More Information
 
-For a detailed breakdown of the logic and usage tips, check out the full [blog post](https://itpyi.github.io/blog/posts/typst-plot-snippet/).
+For more details and a comprehensive example, see this [working example](https://github.com/itpyi/typst-plot/blob/main/examples/working-example.typ).

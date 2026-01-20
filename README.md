@@ -19,8 +19,8 @@ Our workflow provides two distinct modes to bridge the gap between "designing" a
 
 A minimal CeTZ example (3 figures) is in [examples/mini.typ](examples/mini.typ). It draws a circle, square, and triangle, and can be exported in two modes:
 
-- **Debug mode:** renders a 3-page PDF, exported to SVG pages as [examples/mini1.svg](examples/mini1.svg), [examples/mini2.svg](examples/mini2.svg), [examples/mini3.svg](examples/mini3.svg).
-- **Output mode:** set `output-label: "square"` and `debug: false` to export a single figure as [examples/mini-square.svg](examples/mini-square.svg).
+- **Debug mode:** renders a 3-page PDF, exported to SVG pages as [readme-assets/mini1.svg](readme-assets/mini1.svg), [readme-assets/mini2.svg](readme-assets/mini2.svg), [readme-assets/mini3.svg](readme-assets/mini3.svg).
+- **Output mode:** set `output-label: "square"` and `debug: false` to export a single figure as [readme-assets/mini-square.svg](readme-assets/mini-square.svg).
 
 ```typst
 #import "fig-plucker.typ": fig-plucker, fig
@@ -56,15 +56,15 @@ A minimal CeTZ example (3 figures) is in [examples/mini.typ](examples/mini.typ).
 
 **Debug mode outputs (3 pages):**
 
-![mini page 1](examples/mini1.svg)
+![mini page 1](readme-assets/mini1.svg)
 
-![mini page 2](examples/mini2.svg)
+![mini page 2](readme-assets/mini2.svg)
 
-![mini page 3](examples/mini3.svg)
+![mini page 3](readme-assets/mini3.svg)
 
 **Output mode (single figure):**
 
-![mini square](examples/mini-square.svg)
+![mini square](readme-assets/mini-square.svg)
 
 ## Install
 
